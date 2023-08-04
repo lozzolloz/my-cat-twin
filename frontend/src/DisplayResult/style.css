@@ -1,0 +1,14 @@
+.displayresult-div--true {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.displayresult-div--false {
+  opacity: 0;
+}
+
+.cat-photo {
+  max-height: 500px;
+  max-width: 500px;
+}

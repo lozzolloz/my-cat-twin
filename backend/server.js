@@ -8,6 +8,7 @@ dotenv.config();
 
 const app = express();
 app.use(cors());
+app.use(express.json());
 const port = process.env.PORT || 5001;
 
 const connectionString = process.env.DB_CONNECTION_STRING;
@@ -46,12 +47,12 @@ app.get("/api/search", async (req, res) => {
 
 // Add endpoint
 app.post("/api/add", async (req, res) => {
-  const { name } = req.body;
+  const { name, cat } = req.body;
 
   try {
     await pool.query(
-      "INSERT INTO my_cat_twin (name, searchcount) VALUES ($1, $2)",
-      [name, 1]
+      "INSERT INTO my_cat_twin (name, cat, searchcount) VALUES ($1, $2, $3)",
+      [name, cat, 1]
     );
     res.json({ message: "Name added successfully" });
   } catch (error) {
@@ -62,7 +63,7 @@ app.post("/api/add", async (req, res) => {
 
 // Increment endpoint
 app.put("/api/increment", async (req, res) => {
-  const { name } = req.query.toLowerCase();
+  const { name } = req.query;
 
   try {
     await pool.query(

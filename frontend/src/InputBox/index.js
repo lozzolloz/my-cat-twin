@@ -1,8 +1,14 @@
+import "./style.css";
+
 export default function InputBox(props) {
   return (
-    <div>
-      <p className="instruction">Enter name:</p>
-      <input className="inputbox" onChange={props.handleChange}></input>
+    <div className="inputbox-div">
+      <p>Enter name:</p>
+      <input
+        className="inputbox"
+        onChange={props.handleChange}
+        value={props.inputValue}
+      ></input>
     </div>
   );
 }
